@@ -1,5 +1,6 @@
 ﻿using Endava.Internship2020.WebApiExamples.DataAccess.Entities;
 using Endava.Internship2020.WebApiExamples.Services.Models;
+using Endava.Internship2020.WebApiExamples.Services.Request;
 
 namespace Endava.Internship2020.WebApiExamples.DataAccess
 {
