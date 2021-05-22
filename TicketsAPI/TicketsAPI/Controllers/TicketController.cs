@@ -64,6 +64,24 @@ namespace TicketsAPI.Controllers
             return Ok();
         }
 
+        [HttpPost("{id:int}")]
+        public IActionResult Update(int id, TicketRequest ticketRequest)
+        {
+            try
+            {
+                Ticket ticket = ticketsService.Get(id);
+                if (ticket == null)
+                    return NotFound("Not found event");
 
+                ticketsService.Update(ticketRequest.ToTicket());
+            }
+            catch (Exception)
+            {
+
+                return NotFound("Not found event");
+            }
+
+            return Ok();
+        }
     }
 }
