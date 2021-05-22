@@ -1,20 +1,14 @@
+using Endava.Internship2020.WebApiExamples.DataAccess;
+using Endava.Internship2020.WebApiExamples.Services;
+using Endava.Internship2020.WebApiExamples.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Endava.Internship2020.WebApiExamples.DataAccess;
-using Microsoft.EntityFrameworkCore;
-using Endava.Internship2020.WebApiExamples.Services;
-using Endava.Internship2020.WebApiExamples.Services.Interfaces;
 
 namespace TicketsAPI
 {
@@ -68,7 +62,7 @@ namespace TicketsAPI
 
             app.UseSwaggerUI(c =>
                {
-                   c.SwaggerEndpoint("/swagger/v1/swagger.json", "SCHOOL OF .NET SERVICE API V1");    
+                   c.SwaggerEndpoint("/swagger/v1/swagger.json", "SCHOOL OF .NET SERVICE API V1");
 
                    c.RoutePrefix = string.Empty;
                });

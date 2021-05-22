@@ -3,10 +3,7 @@ using Endava.Internship2020.WebApiExamples.Services.Models;
 using Endava.Internship2020.WebApiExamples.Services.Request;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TicketsAPI.Controllers
 {
@@ -33,6 +30,11 @@ namespace TicketsAPI.Controllers
         public IActionResult Get(int ticketId)
         {
             Ticket ticket = ticketsService.Get(ticketId);
+
+            if(ticket == null)
+            {
+                return NotFound("Event not found!");
+            }
 
             return Ok(ticket);
         }
@@ -69,16 +71,20 @@ namespace TicketsAPI.Controllers
         {
             try
             {
-                Ticket ticket = ticketsService.Get(id);
-                if (ticket == null)
-                    return NotFound("Not found event");
+                if (!ticketsService.Contains(id))
+                {
+                    return NotFound("Event not found!");
+                }
 
-                ticketsService.Update(ticketRequest.ToTicket());
+                Ticket ticketToUpdate = ticketRequest.ToTicket();
+                ticketToUpdate.Id = id;
+
+                ticketsService.Update(ticketToUpdate);
             }
             catch (Exception)
             {
 
-                return NotFound("Not found event");
+                return BadRequest("Check your request!");
             }
 
             return Ok();
